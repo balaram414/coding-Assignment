@@ -1,0 +1,59 @@
+const nodemailer=require("nodemailer");
+const cron=require('node-cron');
+var fs = require('fs');
+const mailoptions={
+from:"balaram@gmail.com",
+to:"mandal@gmail.com",
+subject:"This is coding test",
+text:"This is Build a simple API to schedule emails and send them"
+};
+
+const transport=nodemailer.createTransport({
+host:'smtp.gmail.com',
+port:560,
+secure:false,
+auth:{
+user:'user@gmial.com',
+pass:'password'
+}
+})
+
+cron.sheduling('3 3 ***',()=>{
+
+transport.sendMail(mailOptions,(err,info)=>{
+if(err)
+{console.log("error")}
+else
+{
+console.log("email send...")
+}
+});
+
+var createStream = require("fs").createWriteStream("DEV.txt");
+createStream.end();
+
+var list = new List(["AA", "bb", "cc"]);
+require('fs').writeFile(
+    './DEV.txt',list,
+    function (err) {
+        if (err) {
+            console.error('Crap happens');
+        }
+    }
+);
+
+function readData(err, data) {
+	  console.log(data);
+}
+
+fs.readFile('DEV.txt', 'utf8', readData);
+
+fs.appendFile('DEV.txt', ' This is my text.', function (err) {
+  if (err) throw err;
+  console.log('Updated');
+});
+
+ require('fs').unlinkSync('./DEV.txt')
+
+
+});
